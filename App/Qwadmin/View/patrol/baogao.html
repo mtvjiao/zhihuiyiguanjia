@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+    <style type="text/css">
+        #imgFrame{ position:absolute; top:40%; left:40%; z-index:1000; display:none;}
+    </style>
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+           <div class="row1"> <h4>需巡检设备共{$counts[count]}个</h4><h5>2016-08-01——2016-08-31</h5></div>
+           <div class="row1"> <h4><a href="index.php?m=Qwadmin&c=patrol&a=view">已巡检设备共{$count}个</a></h4></div>
+           <div class="row1"> <h4>未巡检设备共{$shes}个</h4></div>
+
+								
+								
+
+									
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			    <div id="imgFrame">
+        <div><a href="javascript:close();">关闭</a></div>
+        <div id="imgbox"></div>
+    </div>
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		    <script type="text/javascript">
+        function showOriginal(img) {
+            document.getElementById("imgFrame").style.display = "block";
+            document.getElementById("imgbox").innerHTML = "<img src='" + img.getAttribute("original") + "' />";
+        }
+        function close() {
+            document.getElementById("imgFrame").style.display = "none";
+        }
+    </script>
+	</body>
+</html>

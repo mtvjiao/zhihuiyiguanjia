@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<form  id="form" name="form"  class="form-horizontal"  method="post"  action="{:U('update')}">
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 所属小组</label>
+										<input name="id" value="{$id}" type="hidden">
+										<div class="col-sm-9">
+										<select id="pid" name="pid" class="rcol-xs-10 col-sm-3" disabled="disabled">
+											<volist name="option" id="v">
+												<option value="{$v.id}">{$v['name']}</option>
+												<volist name="v.children" id="vv">
+												<option value="{$vv.id}">&nbsp;&nbsp;┗━{$vv['name']}</option>
+													<volist name="vv.children" id="vvv">
+													<option value="{$vvv.id}" <if condition="$xiaozu eq $vvv['id']">selected="selected"</if>>&nbsp;&nbsp;&nbsp;&nbsp;┗━{$vvv['name']}</option>
+													
+													</volist>
+												</volist>
+											</volist>
+										</select>
+										<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 小组成员</label>
+										<div class="col-sm-9">
+									<select name="select" id="select" multiple size="5" class="rcol-xs-10 col-sm-3"  disabled="disabled">
+									</select> 
+									
+								</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 巡检项目</label>
+										<div class="col-sm-11">
+										<select id="prid" name="prid" class="rcol-xs-10 col-sm-2"  disabled="disabled">
+										{$category}										
+										</select>
+
+										
+
+
+										</div>
+									</div>
+									<div class="space-4"></div>
+									
+									
+							</form>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			function option(){
+			   //var uid = $("#select").val();
+				//alert(uid);
+				//console.log(uid);
+				var uid = $("#select").val() ;
+				var pid = $("#pid").val() ;
+				
+				$.ajax({
+				async:false,
+				type:"POST",
+				url:"index.php?m=Qwadmin&c=Xunjian&a=remove",
+				dataType:"json",
+				data:{"uid":uid,"pid":pid},
+				success:function(data){
+				//alert(data);
+				},
+				error:function(data){
+				//alert("Fail"+data);
+				//return false;
+				}
+				});
+				
+				$("#select option:selected").remove();
+			}
+
+		$(function(){
+		
+		
+			getVal(); 
+
+			
+			
+			$("#pid").change(function(){
+			getVal();
+			
+			});
+
+
+			function getVal(){
+				$.getJSON("index.php?m=Qwadmin&c=Xunjian&a=select",{pid:$("#pid").val()},function(json){
+				var prid = $("#select");
+				$("option",prid).remove(); //清空原有的选项，也可使用 ds_id.empty();
+				$.each(json,function(index,array){
+				var option = "<option value='"+array['uid']+"'>"+array['user']+"</option>";
+				prid.append(option);
+				});
+				});
+			}
+
+
+			$("#prid").change(function(){
+				getproject();
+			
+			});
+
+
+			function getproject(){
+				$.getJSON("index.php?m=Qwadmin&c=Xunjian&a=getproject",{prid:$("#prid").val()},function(json){
+				var prid = $("#projectid");
+				$("option",prid).remove(); //清空原有的选项，也可使用 ds_id.empty();
+				$.each(json,function(index,array){
+				var option = "<option value='"+array['id']+"'>"+array['name']+"</option>";
+				prid.append(option);
+				});
+				});
+			}
+
+			$(".jianren").click(function(){
+				option();
+			})
+			$(".jiansb").click(function(){
+               // alert("22");
+				$("#shebeilb option:selected").remove();
+			})
+
+			
+			$(".jiaren").click(function(){
+				var jiaren = $("#jiaren").val();
+				var pid = $("#pid").val() ;
+				$.ajax({
+				async:false,
+				type:"POST",
+				url:"index.php?m=Qwadmin&c=Xunjian&a=jiaren",
+				dataType:"json",
+				data:{"jiaren":jiaren,"pid":pid},
+				success:function(data){
+				alert(data);
+				},
+				error:function(data){
+				//alert("Fail"+data);
+				//return false;
+				}
+				});
+			})
+
+
+			$(".jiasb").click(function(){
+			//alert("11");
+				var jiasb = $("#jiasb").val();
+				var projectid = $("#projectid").val() ;
+				var shebeilb = $("#shebeilb");
+
+				$.ajax({
+				async:false,
+				type:"POST",
+				url:"index.php?m=Qwadmin&c=Xunjian&a=jiasb",
+				dataType:"json",
+				data:{"jiasb":jiasb,"projectid":projectid},
+				success:function(data){
+				if(data == 1){
+				    alert("对不起，无此设备");
+				}else{
+					var option = "<option value='"+data['id']+"'>"+data['name']+"</option>";
+					shebeilb.append(option);
+				
+				}
+				},
+				error:function(data){
+				//alert("Fail"+data);
+				//return false;
+				}
+				});
+			})
+		
+		
+		
+			$(".submitjh").click(function(){
+			    var l = form.shebeilb.options.length ;
+				for (var i=0;i<l;i++){
+				
+					if(i == (l-1)){
+						form.allshebei.value+=(form.shebeilb.options[i].value);
+					}else{
+						form.allshebei.value+=(form.shebeilb.options[i].value+",");
+					}
+				
+				}
+				$("#form").submit();
+			})
+		
+		
+		
+	
+		
+		
+			var editor = KindEditor.create('textarea[name="tips"]',{
+				resizeType : 1,
+				allowPreviewEmoticons : false,
+				allowImageUpload : false,
+				items : [
+					'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+					'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+					'insertunorderedlist', '|', 'emoticons','link']
+			});
+			$(".btn.btn-info").click(function(){
+			var title = $("#title").val();
+			if(title == ''){
+				bootbox.alert({  
+					buttons: {  
+					   ok: {  
+							label: '确定',  
+							className: 'btn-myStyle'  
+						}  
+					},  
+					message: '菜单名称不能为空。',
+					title: "友情提示",  
+				});  
+				return false;
+			}
+			})
+		})
+		
+		</script>
+
+	</body>
+</html>

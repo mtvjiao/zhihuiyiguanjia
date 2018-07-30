@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>巡检记录统计表</title>
+        <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/jquery.js"></script>
+<script src="jquery.mobile-1.4.5.min.js"></script>
+        <style type="text/css">
+${demo.css}
+#head h1{color:#ffffff}
+#head{height:50px;background: #57aea8;position:fixed;z-index:1;width:100%;border: none;margin-top:-45px;margin-left:-8px}  .row1{border-bottom:  1px solid grey}
+.row1 span{margin-left:10px;}
+.row1 div{margin: 5px;}
+
+		</style>
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '占比',
+            data: [
+			
+                {
+                    name: '正常',
+                    y: {$baifenz},
+					color:'#56d69b',
+                },
+                {
+                    name: '巡检中',
+                    y: {$baifening},
+                    sliced: true,
+					color:'#fdff45',
+                    selected: true
+                },
+                {
+                    name: '未巡检',
+                    y: {$baifenshes},
+					color:'#608be1'
+                },
+                {
+                    name: '不正常',
+                    y: {$baifened},
+					color:'#f84040'
+                },
+            ]
+        }]
+    });
+});
+		</script>
+	</head>
+	<body>
+
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/hchart/highcharts.js"></script> 
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/hchart/highcharts-3d.js"></script>
+<div data-role="page" id="page1">
+    <div data-role="header" id="head">
+        <h1 style="font-size:20px;font-weight: normal;text-shadow: none;margin-left:30%">巡检记录统计图</h1>
+    </div>
+    </div>
+<div id="container" style="height: 300px;width:95%;margin-top:40px;margin-left: 4%"></div>
+<div data-role="main" class="ui-content">
+    <div data-role="collapsible" data-collapsed="false" style="border:1px solid #57aea8;width:100%;margin-left:-2px;text-align: left">
+
+
+
+
+        <div class="row1">
+
+            <div style="position: relative"><span style="width:60px;height:20px;background-color: #56d69b;display: inline-block"></span><span style="font-size: 16px;color:#56d69b">完成巡检记录-正常{$countz}</span>
+
+            </div>
+        </div>
+        <div class="row1">
+
+            <div style="position: relative"><span  style="width:60px;height:20px;background-color: #f84040;display: inline-block" ></span><span style="font-size: 16px;color:#f84040;">完成巡检记录-不正常{$counted}</span>
+
+            </div>
+        </div>
+        <div class="row1">
+
+            <div style="position: relative"><span style="width:60px;height:20px;background-color:#fdff45;display: inline-block"></span><span style="font-size: 16px;color:#fdff45;">巡检中记录{$counting}</span>
+
+            </div>
+        </div>
+        <div class="row1">
+
+            <div style="position: relative"><span style="width:60px;height:20px;background-color:#608be1;display: inline-block" ></span><span style="font-size: 16px;color:#608be1">未巡检记录{$shes}</span>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<a href="index.php?m=Qwadmin&c=wap&a=view"  data-ajax="false"style="width:150px;height:40px"><img src="wap/btn.png" style="width:150px;height:40px;margin-top:20px;"></a>
+
+
+
+    </body>
+</html>

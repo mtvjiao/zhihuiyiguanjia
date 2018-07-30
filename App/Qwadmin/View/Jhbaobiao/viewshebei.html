@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bK1dZWjVkiSuauVlWVNdpCQq"></script>
+		<include file="Public/head" />
+   </head>
+    <style type="text/css">
+        #imgFrame{ position:absolute; top:10%; left:10%; z-index:1000; display:none;}
+        #imgFrames{ position:absolute; top:2%; left:30%; z-index:1000; display:none;width: 600px;height: 500px}
+        #allmap{background-color: #000;overflow:visible!important;width: 100%;margin-top: 20px;height: 250px}
+        .anchorBL{
+        	display: none!important;
+        }
+	
+    </style>
+	    <style>
+
+        #head h1{color:#f0f0f0}
+
+        .row1 span{margin-left:10px;}
+        .row1 div{margin: 5px;}
+        .aa{font-weight: bold;font-size:18px}
+
+        .ui-content {margin-top: 50px}
+        #head1{height:50px;background: url("wap/head1.png")repeat;border:none;position:fixed;width:100%;z-index:1}
+        #head1 h1{color:#f0f0f0}
+       
+        .row11{background-color: #e5e5e5;}
+        .row11 span{margin: 10px}
+
+        #lianjie{background-color:#3f8468;color: #f0f0f0;border:none;}
+
+    </style>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+<php>
+								function showTree($data,$pre=null) {
+									
+									foreach ($data as $key => $val) {
+										echo '<tr>';
+										echo '<td>';
+											echo $val['shebeiname'];
+										echo '</td>';
+										echo '<td>';
+											echo date('Y-m-d H:i:s',$val['time']);
+										echo '</td>';
+										echo '<td>';
+											echo $val['user'];
+										echo '</td>';
+										echo '<td>';
+										echo str_replace(" ","<br>",$val['shuxingname']);
+										echo '</td>';
+										echo '<td>';
+											if ($val['ztid']==1) {
+												echo '不正常';
+											}elseif ($val['ztid']==0) {
+												echo '正常';
+											}else {
+												echo '正常';
+											}
+										echo '</td>';
+										echo '<td>';
+											if ($val['zhengchang']==1) {
+											if($val['img0']){
+echo '<img src="'.$val['img0'].'"  original="'.$val['img0'].'" onClick="showOriginal(this)"  width="30" height="30">';
+											
+											}
+											if($val['img1']){
+echo '<img src="'.$val['img1'].'"  original="'.$val['img1'].'" onClick="showOriginal(this)"  width="30" height="30">';
+											
+											}
+											if($val['img2']){
+echo '<img src="'.$val['img2'].'"  original="'.$val['img2'].'" onClick="showOriginal(this)"  width="30" height="30">';
+											
+											}
+											}elseif ($val['zhengchang']==0) {
+												echo '';
+											}
+
+										echo '</td>';
+										echo '<td>';
+											if($val['sound0']){
+echo '<a href="'.$val['sound0'].'" target="_blank">下载录音一</a><br>';
+
+											}
+											if($val['sound1']){
+echo '<a href="'.$val['sound1'].'" target="_blank">下载录音二</a><br>';
+											}
+											if($val['sound2']){
+echo '<a href="'.$val['sound2'].'" target="_blank">下载录音三</a>';
+											}
+
+										echo '</td>';
+ 										echo '<td>';
+											echo '<a onclick="seemap('.$val[lng].','.$val[lat].',\''.$val[shebeiname].'\');">查看地图</a>';
+										echo '</td>';										
+										echo '</tr>';
+										
+
+									}
+								}
+								
+								</php>	
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<volist name="category" id="v">
+								<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th class="col-xs-1">巡检设备名称</th>
+										<th class="col-xs-1">巡检操作时间</th>
+										<th class="col-xs-1">巡检操作人</th>
+										<th class="col-xs-2">巡检属性</th>
+										<th class="col-xs-1">是否正常</th>
+										<th class="col-xs-1">图片</th>
+										<th class="col-xs-1">音频</th>					  <th class="col-xs-2">地图</th>
+									</tr>
+								</thead>
+								<tbody>
+															
+								<?php showTree($v['shebei']);?>
+								</tbody>
+								</table>
+
+								</volist>
+								
+								
+									
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			    <div id="imgFrame">
+        <div id="bb"><a href="javascript:close();"style="position:absolute;left:60%;color:white;font-size:30px;">关闭</a></div>
+        <div id="imgbox"></div>
+    </div>
+
+	<div id="imgFrames">
+	        <div id="bbs"><a href="javascript:closes();" style="position: absolute;left: 90%;color: #000;font-size: 30px;z-index: 100000;">关闭</a></div>
+	        <div id="allmap"></div>
+	    </div>
+
+
+
+
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		    <script type="text/javascript">
+				function showOriginal(img) {
+					document.getElementById("imgFrame").style.display = "block";
+					document.getElementById("imgbox").innerHTML = "<img src='" + img.getAttribute("original") + "' width ='600px' />";
+				}
+				function close() {
+					document.getElementById("imgFrame").style.display = "none";
+				}
+				function closes() {
+					document.getElementById("imgFrames").style.display = "none";
+				}
+
+				function seemap(jingdu,weidu,nn){
+					//alert('11');
+					document.getElementById("imgFrames").style.display = "block";
+				var name = nn;
+				var map = new BMap.Map("allmap");
+					map.centerAndZoom(new BMap.Point(jingdu,weidu), 20);  // 初始化地图,设置中心点坐标和地图级别
+					map.enableScrollWheelZoom(true);
+					
+
+						map.clearOverlays(); 
+						var new_point = new BMap.Point(jingdu,weidu);
+						var marker = new BMap.Marker(new_point);  // 创建标注
+						//var label = new BMap.Label("我是百度标注哦",{offset:new BMap.Size(0,0)}); 
+                        
+						map.addOverlay(marker);              // 将标注添加到地图中
+						map.panTo(new_point); 
+
+						 
+						var label = new BMap.Label(name,{offset:new BMap.Size(20,-10)});
+						    label.setStyle({  
+						         display:"block"  //给label设置样式，任意的CSS都是可以的
+						    });
+						marker.setLabel(label);
+						 
+
+				}
+			</script>
+<script src="wap/jquery-1.12.4.min.js"></script>
+<script src="wap/jquery.mobile-1.4.5.min.js"></script>
+<script>
+  $(function(){
+      $(".imge").on("click",function(){
+          $(".aa").css("display","block")
+      });
+	    $(".imge1").on("click",function(){
+          $(".aa1").css("display","block")
+      });
+	    $(".imge2").on("click",function(){
+          $(".aa2").css("display","block")
+      });
+      $(".guanbi").on("click",function(){
+          $(".aa").css("display","none")
+      });
+	      $(".guanbi1").on("click",function(){
+          $(".aa1").css("display","none")
+      });
+	      $(".guanbi2").on("click",function(){
+          $(".aa2").css("display","none")
+      });
+  })
+  </script>
+</html>

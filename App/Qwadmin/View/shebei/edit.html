@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<form class="form-horizontal" role="form" id="form" method="post" action="{:U('update')}">
+									<input name="id" id="id" value="{$currentcategory.id}" type="hidden">
+
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-0"> 所属分类 </label>
+										<div class="col-sm-9">
+										<select id="projectid" name="projectid" class="col-xs-10 col-sm-5">
+											
+											{$category}
+										</select>
+										
+										<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">选择所属分类。</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="name"> 二维码标识 </label>
+										<div class="col-sm-9">
+											<input type="text" name="erweima" id="erweima" placeholder="二维码标识" class="col-xs-10 col-sm-5" value="{$currentcategory.erweima}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">二维码标识，不能为空。</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="name"> 设备重命名 </label>
+										<div class="col-sm-9">
+											<input type="text" name="name" id="name" placeholder="设备重命名" class="col-xs-10 col-sm-5" value="{$currentcategory.name}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">设备重命名建议不修改，若有必要可填写自定义名称</span>
+											</span>
+										</div>
+									</div>
+
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="description"> 备注 </label>
+										<div class="col-sm-9">
+											<textarea name="bz" id="bz" placeholder="备注" class="col-xs-10 col-sm-5" rows="5">{$currentcategory.bz}</textarea>
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-0"> 所属区域 </label>
+										<div class="col-sm-9">
+										<select id="area" name="area" class="col-xs-10 col-sm-2">
+
+											<volist name="option" id="v">
+												<option value="{$v.id}"  <if condition="$apid.pid eq $v['id']">selected="selected"</if>>{$v['name']}</option>
+											</volist>
+
+										</select>
+										<select id="areas" name="areas" class="col-xs-10 col-sm-2">
+											<volist name="options" id="v">
+												<option value="{$v.id}"  <if condition="$apid.id eq $v['id']">selected="selected"</if>>{$v['name']}</option>
+											</volist>
+											
+										</select>
+										<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">选择所属区域。</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="o"> 排序 </label>
+										<div class="col-sm-9">
+											<input type="number" name="orderid" id="orderid" placeholder="排序" class="col-xs-10 col-sm-5" value="{$currentcategory.orderid}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">越小越靠前。</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="col-md-offset-2 col-md-9">
+										<button class="btn btn-info submit" type="button">
+											<i class="icon-ok bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="icon-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</form>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		$(function(){
+
+			//getVal();
+			$("#area").change(function(){
+				getVal();
+			
+			});
+
+
+			function getVal(){
+				$.getJSON("index.php?m=Qwadmin&c=shebei&a=select",{pid:$("#area").val()},function(json){
+					//alert("1");
+					var prid = $("#areas");
+					$("option",prid).remove(); //清空原有的选项，也可使用 ds_id.empty();
+					$.each(json,function(index,array){
+					var option = "<option value='"+array['id']+"'>"+array['name']+"</option>";
+					prid.append(option);
+					});
+				});
+			}
+			$(".btn.btn-info.submit").click(function(){
+				var name = $("#name").val();
+				if(name==''){
+					bootbox.dialog({
+						message: "抱歉，分类名称不能为空。", 
+						buttons: {
+							"success" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							}
+						}
+					});
+					return false;
+				}
+				$("#form").submit();
+
+			})
+		})
+		</script>
+	</body>
+</html>

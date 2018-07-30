@@ -1,0 +1,192 @@
+
+
+<div class="row1" style="border-bottom:1px solid grey ;height:300px">
+<div id="container" style="height:300px;width:500px;float: left; border-right:1px solid grey ; "></div>
+<div id="container1" style="height: 300px;width:500px;float:left;"></div>
+</div>
+<div class="row2">
+<div id="container2"  style="height:300px;width:500px;float: left; border-right:1px solid grey ; padding-top:20px"></div>
+<div id="container3"  style="height:300px;width:500px;float: left;padding-top:20px"></div>
+</div>
+
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/jquery.js"></script>
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/hchart/highcharts.js"></script> 
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/hchart/highcharts-3d.js"></script>
+<script>
+    $(function () {
+        $('#container').highcharts({
+            title: {
+                text: '报修平台曲线图',
+                x: -20 //center
+            },
+            subtitle: {
+                text: '报修系统',
+                x: -20
+            },
+            xAxis: {
+                categories: ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月']
+            },
+            yAxis: {
+                title: {
+                    text: '数量（*100）'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: ''
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: '报修单数量',
+                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            }, {
+                name: '当月处理报修',
+                data: [2, 8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            }, {
+                name: '当月完成报修',
+                data: [9, 6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+            }, {
+                name: '报修反馈',
+                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            }]
+        });
+    $('#container1').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: '巡检设备3D饼状图'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '所占比例',
+            data: [
+                {
+                    name: '未巡检记录{$shes}',
+					color:'#cd3a52',
+                    y: {$baifenshes}
+                },
+				{
+                    name: '完成巡检记录-正常{$countz}',
+					color:'#CCCCCC',
+                    y: {$baifenz}
+                },
+
+                {
+                    name: '完成巡检记录-不正常{$counted}',
+                    y: {$baifened},
+                    sliced: true,
+					color:'#59c16c',
+                    selected: true
+                },
+                {
+                    name: '巡检中记录{$counting}',
+					color:'#ebf278',
+                    y:  {$baifening}
+                }
+            ]
+        }]
+    });
+        $('#container2').highcharts({
+            chart: {
+                type: 'column',
+                margin: 75,
+                options3d: {
+                    enabled: true,
+                    alpha: 10,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: '配件仓库系统柱状图'
+            },
+            subtitle: {
+                text: '全年配件仓库库存量'
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+            xAxis: {
+                categories: ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月']
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            series: [{
+                name: '配件库存',
+                data: [2, 3, 4, 4, 8, 5, 1, 4, 6, 3]
+            }]
+        });
+        $('#container3').highcharts({
+            chart: {
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45
+                }
+            },
+            title: {
+                text: '餐饮管理系统环形图'
+            },
+            subtitle: {
+                text: '全年餐饮销售比例'
+            },
+            plotOptions: {
+                pie: {
+                    innerSize: 100,
+                    depth: 45
+                }
+            },
+            series: [{
+                name: '销售量（千份）',
+                data: [
+                    ['营养餐', 8],
+                    ['快餐', 3],
+                    ['面食', 1],
+                    ['流食', 6],
+                    ['套餐类', 8],
+                    ['水饺', 4],
+                    ['盖饭', 4],
+                    ['烧烤类', 1],
+                    ['砂锅类', 1]
+                ]
+            }]
+        });
+    });
+
+</script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="__PUBLIC__/qwadmin/css/bootstrap.css">
+</head>
+<body>
+<div class="bs-example" data-example-id="contextual-table" style="width:48%; font-size:11px; float:left"> 
+    <table class="table">
+        <thead>
+        <tr>
+            <th>巡检单号</th>
+            <th>巡检设备</th>
+            <th>巡检时间</th>
+            <th>巡检人</th>
+            <th>巡检状态</th>
+            <th>巡检结果</th>
+
+        </tr>
+        </thead>
+        <tbody>
+										<volist name="categorys" id="val">
+										<tr>
+											<th scope="row"><a href="index.php?m=Qwadmin&c=Patrol&a=viewshebei&id={$val['id']}">{$val['danhao']}</a></th>
+											<td><span class="yename"><input class="yeinput" type="hidden" value="'.$val['id'].'">{$val['shebeiname']}</span></td>
+											<td><php> echo date('m-d H:i:s',$val['time']) </php></td>
+											<td>{$val['user']}</td>
+											<td>{$val['zhuangtai']}</td>
+											<td><php> 										
+											if($val['zt']==1){
+											if($val['ztid']==0){
+											   echo '正常';
+											}
+											if($val['ztid']==1){
+											   echo '<span style="color:#FF0000">不正常</span>';
+											}
+										
+										}
+ </php></td>
+										</tr>
+								
+								</volist>
+
+    </table>
+										{$page}
+
+</div>
+
+
+<div class="bs-example" data-example-id="contextual-table" style="width:48%; font-size:11px; float:left ; margin-left:20px; border-left:1px solid #33CCFF; padding-left:20px"> 
+    <table class="table">
+        <thead>
+        <tr>
+            <th>巡检单号</th>
+            <th>巡检设备</th>
+            <th>巡检时间</th>
+            <th>巡检人</th>
+            <th>巡检状态</th>
+            <th>巡检结果</th>
+
+        </tr>
+        </thead>
+        <tbody>
+										<volist name="categorys" id="val">
+										<tr>
+											<th scope="row"><a href="index.php?m=Qwadmin&c=Patrol&a=viewshebei&id={$val['id']}">{$val['danhao']}</a></th>
+											<td><span class="yename"><input class="yeinput" type="hidden" value="'.$val['id'].'">{$val['shebeiname']}</span></td>
+											<td><php> echo date('m-d H:i:s',$val['time']) </php></td>
+											<td>{$val['user']}</td>
+											<td>{$val['zhuangtai']}</td>
+											<td><php> 										
+											if($val['zt']==1){
+											if($val['ztid']==0){
+											   echo '正常';
+											}
+											if($val['ztid']==1){
+											   echo '<span style="color:#FF0000">不正常</span>';
+											}
+										
+										}
+ </php></td>
+										</tr>
+								
+								</volist>
+
+    </table>
+										{$page}
+
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>巡检记录</title>
+    <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+    <style>
+
+        #head h1{color:#f0f0f0}
+        .row1{border-bottom: 1px solid #dddddd }
+        .row1 span{margin-left:10px;}
+        .row1 div{margin: 12px;}
+        .cc{color:#999999;}
+
+        #head{height:50px;background: #57aea8;position:fixed;z-index:1;width:100%;border: none}
+        .ui-content {margin-top: 50px}
+
+
+
+        .row11 span{margin: 10px}
+
+
+
+        .bb{margin-bottom: 25px}
+
+        #head2 h1{color:#f0f0f0}
+    </style>
+</head>
+<body>
+<div data-role="page" id="page1">
+    <div data-role="header" id="head">
+         <h1 style="font-size:20px;text-shadow:none;color:#ffffff">巡检记录</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+
+
+
+
+
+
+
+        <div data-role="collapsible" data-collapsed="false" style="border:1px solid #57aea8;width:105%;margin-left:-10px;text-align: left">
+            <h1>已完成的巡检</h1>
+
+
+
+                 <div class="row1">
+                     <div class="cc" ><span style="margin-left: -14px;font-size: 15px">1.</span><span style="font-size: 15px">20160820135024</span>
+                     <span style="font-size: 15px;margin-left:15px">2016-08-20 13:23:00  </span>
+                  </div>
+                <div style="position: relative;"><span style="font-size: 18px;color:#666666;">消防箱6回路0001</span>
+                    <span style="color:#e14141">不正常</span>
+                    <span style="position: absolute;top:-10px;"><a href="xunjianjiluxiangqing.html" target="_blank" style="background-color:#57aea8;color: #ffffff ;height: 10px;line-height: 10px;text-shadow:none;font-weight:normal"  class="ui-btn ui-btn-inline ui-mini ui-corner-all bb">查看</a></span>
+               </div>
+            </div>
+            <div class="row1">
+                <div class="cc"><span style="margin-left: -14px;font-size: 15px">2.</span><span style="font-size: 15px">20160820135024</span>
+                    <span style="font-size: 15px;margin-left:15px;">2016-08-20 13:23:00  </span>
+                </div>
+                <div style="position: relative"><span style="font-size: 18px;color:#666666;">消防箱6回路0001</span>
+                    <span style="color:#33b777">正常</span>
+                    <span style="position: absolute;top:-10px;margin-left: 25px"><a href="xunjianjiluxiangqing.html" target="_blank" style="background-color:#57aea8;color: #ffffff;height: 10px;line-height: 10px;text-shadow:none;font-weight:normal "  class="ui-btn ui-btn-inline ui-mini ui-corner-all bb">查看</a></span>
+                </div>
+            </div>
+
+
+         </div>
+    </div>
+
+
+    
+
+</div>
+
+<script src="jquery-1.12.4.min.js"></script>
+<script src="jquery.mobile-1.4.5.min.js"></script>
+</body>
+</html>

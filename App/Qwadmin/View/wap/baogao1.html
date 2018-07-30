@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>巡检记录统计表</title>
+        <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/jquery.js"></script>
+<script src="jquery.mobile-1.4.5.min.js"></script>
+        <style type="text/css">
+${demo.css}
+#head h1{color:#ffffff}
+#head{height:50px;background: #57aea8;position:fixed;z-index:1;width:100%;border: none;margin-top:-85px;margin-left:-8px}  .row1{border-bottom: 1px solid grey}
+.row1 span{margin-left:10px;}
+.row1 div{margin: 5px;}
+
+		</style>
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: '<h1>巡检记录统计图表展示</h1>'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '占比',
+            data: [
+                ['已完成巡检记录-正常', {$baifenz}],
+                ['已完成巡检记录-不正常', {$baifened}],
+                {
+                    name: '巡检中记录',
+                    y: {$baifening},
+                    sliced: true,
+                    selected: true
+                },
+                ['未巡检记录', {$baifenshes}],
+               
+            ]
+        }]
+    });
+});
+		</script>
+	</head>
+	<body>
+
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/hchart/highcharts.js"></script> 
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/hchart/highcharts-3d.js"></script>
+<div data-role="page" id="page1">
+    <div data-role="header" id="head">
+        <h1 style="font-size:20px;font-weight: normal;text-shadow: none;margin-left:30%">巡检记录统计图</h1>
+    </div>
+    </div>
+<div id="container" style="height: 300px;width:95%;margin-top:80px;margin-left: 4%"></div>
+<div data-role="main" class="ui-content">
+    <div data-role="collapsible" data-collapsed="false" style="border:1px solid #57aea8;width:100%;margin-left:-2px;text-align: left">
+
+
+
+
+        <div class="row1">
+
+            <div style="position: relative"><span style="width:60px;height:20px;background-color: #95ceff;display: inline-block"></span><span style="font-size: 16px;color:#95ceff">完成巡检记录-正常{$countz}</span>
+
+            </div>
+        </div>
+        <div class="row1">
+
+            <div style="position: relative"><span  style="width:60px;height:20px;background-color: #434348;display: inline-block" ></span><span style="font-size: 16px;color:#434348;">完成巡检记录-不正常{$counted}</span>
+
+            </div>
+        </div>
+        <div class="row1">
+
+            <div style="position: relative"><span style="width:60px;height:20px;background-color: #90ed7d;display: inline-block"></span><span style="font-size: 16px;color:#90ed7d;">巡检中记录{$counting}</span>
+
+            </div>
+        </div>
+        <div class="row1">
+
+            <div style="position: relative"><span style="width:60px;height:20px;background-color: #f7a35c;display: inline-block" ></span><span style="font-size: 16px;color:#f7a35c">未巡检记录{$shes}</span>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<a href="index.php?m=Qwadmin&c=wap&a=view"  style="text-align:center;border:1px solid white;border-radius:10px;background-color:#57aea8;color:#ffffff;text-shadow: none;line-height: 100px;font-size: 20px;text-align:center;height:100px " class="ui-btn ui-btn-inline ui-corner-all ui-shadow "><button style="border-radius:10px;width:40%;height:100%;font-size:20px;background-color:#57aea8;color:#ffffff">查看巡检记录</button></a>
+
+
+
+    </body>
+</html>

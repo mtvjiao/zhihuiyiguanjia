@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>巡检报告</title>
+	<script src="wap/jquery-1.12.4.min.js"></script>
+	<script src="wap/jquery.mobile-1.4.5.min.js"></script>
+
+    <link rel="stylesheet" href="wap/jquery.mobile-1.4.5.min.css">
+    <style>
+
+        #head h1{color:#f0f0f0}
+
+        .row1 span{margin-left:10px;}
+        .row1 div{margin: 5px;}
+        .aa{font-weight: bold;font-size:18px}
+
+        .ui-content {margin-top: 50px}
+        #head1{height:50px;background: #57aea8;border:none;position:fixed;width:100%;z-index:1}
+        #head1 h1{color:#f0f0f0}
+
+
+        .row11 span{margin: 10px}
+    .botm div{margin-bottom: 10px}
+        #lianjie{background-color:#3f8468;color: #f0f0f0;border:none;}
+
+    </style>
+</head>
+<body>
+<div data-role="page" id="page2">
+    <div data-role="header" id="head1">
+
+        <h1 style="font-size: 20px;text-shadow:none;color:#ffffff">巡检记录详情</h1>
+    </div>
+    <div data-role="main" class="ui-content">
+     <div class="top" style="background-color: #ffffff">
+        <div class="row11">
+            <div style="font-size: 20px;font-weight: bold;color:#57aea8;margin-bottom: 20px ">{$cate['shebeiname']}的巡检属性</div>
+           
+			
+	<php>
+								function showTree($data,$pre=null) {
+									
+									foreach ($data as $key => $val) {
+										
+										echo '			<div style="color: #999999">';
+										echo str_replace(" ","<br>",$val['shuxingname']) ;
+										echo '</div> </div> 
+										
+										<div class="ui-field-contain first"> <div>';
+										if($val['img0']){
+					echo ' <a href="#myPopup0" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=" '.$val['img0'].'" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup0" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src=" '.$val['img0'].'">
+                </div>';
+				}
+										if($val['img1']){
+					echo ' <a href="#myPopup1" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=" '.$val['img1'].'" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup1" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src=" '.$val['img1'].'">
+                </div>';
+				}
+										if($val['img2']){
+					echo ' <a href="#myPopup2" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=" '.$val['img2'].'" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup2" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src=" '.$val['img2'].'">
+                </div>';
+				}
+				echo "</div><div>";
+
+										if($val['sound0']){
+					echo '                <a href="#myPopu0" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/xunjian_play.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu0" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls="controls" >
+
+                        <source src="'.$val['sound0'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>';}
+										if($val['sound1']){
+					echo '                <a href="#myPopu1" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/xunjian_play.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu1" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls="controls" >
+
+                        <source src="'.$val['sound1'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>';}
+										if($val['sound2']){
+					echo '                <a href="#myPopu2" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/xunjian_play.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu2" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls="controls" >
+
+                        <source src="'.$val['sound2'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>
+';
+				}
+
+
+
+
+									}
+								}
+								showTree($category);
+								</php>			
+			
+			
+            
+            
+
+
+
+            </div>
+
+        </div>
+
+</div>
+<div class="botm" style="background-color: #ffffff;margin-top: 20px">
+    <div class="row11">
+	<php>
+								function showTrees($data,$pre=null) {
+									
+									foreach ($data as $key => $val) {
+										echo '			<div style="font-size: 20px;font-weight: bold;color:#57aea8;margin-bottom: 20px">'.$val['shebeiname'].'</div> </div> 
+										<div class="ui-field-contain first"> <div>';
+										echo '			<div style="color: #999999">';
+										echo str_replace(" ","<br>",$val['shuxingname']) ;
+										echo '</div> </div> 
+										<div class="ui-field-contain first"> <div>';
+										if($val['img0']){
+					echo ' <a href="#myPopup0" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=" '.$val['img0'].'" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup0" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src=" '.$val['img0'].'">
+                </div>';
+				}
+										if($val['img1']){
+					echo ' <a href="#myPopup1" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=" '.$val['img1'].'" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup1" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src=" '.$val['img1'].'">
+                </div>';
+				}
+										if($val['img2']){
+					echo ' <a href="#myPopup2" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=" '.$val['img2'].'" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup2" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src=" '.$val['img2'].'">
+                </div>';
+				}
+				echo "</div><div>";
+
+										if($val['sound0']){
+					echo '                <a href="#myPopu0" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/xunjian_play.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu0" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls="controls" >
+
+                        <source src="'.$val['sound0'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>';}
+										if($val['sound1']){
+					echo '                <a href="#myPopu1" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/xunjian_play.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu1" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls="controls" >
+
+                        <source src="'.$val['sound1'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>';}
+										if($val['sound2']){
+					echo '                <a href="#myPopu2" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/xunjian_play.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu2" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls="controls" >
+
+                        <source src="'.$val['sound2'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>
+';
+				}
+
+
+
+
+									}
+								}
+								showTrees($categorys);
+								</php>	    </div>
+</div>
+
+
+
+
+
+
+    </div>
+</div>
+</body>
+</html>

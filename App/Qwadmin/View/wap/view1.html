@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>巡检记录</title>
+    <link rel="stylesheet" href="wap/jquery.mobile-1.4.5.min.css">
+<style>
+
+    #head h1{color:#f0f0f0}
+    .row1{border-bottom: 1px solid grey}
+    .row1 span{margin-left:10px;}
+    .row1 div{margin: 5px;}
+
+    .aa{font-weight: bold}
+     #head{height:50px;background: url("wap/head.png")repeat;position:fixed;z-index:1;width:100%;border: none}
+    .ui-content {margin-top: 50px}
+    #head{height:50px;background: url("wap/head.png")repeat;border:none;position:fixed;z-index:1;width:100%;}
+     #head1 h1{color:#f0f0f0}
+
+    .row11 span{margin: 10px}
+
+
+    #lianjie1{background-color:#3f8468;color: #f0f0f0;border:none}
+    .bb{margin-bottom: 25px}
+    #head2{height:50px;background: url("wap/head.png")repeat;border:none;position:fixed;z-index:1;width:100%;}
+    #head2 h1{color:#f0f0f0}
+</style>
+</head>
+<body>
+<div data-role="page" id="page1">
+    <div data-role="header" id="head">
+        <h1>巡检记录</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <div data-role="collapsible" data-collapsed="false">
+            <h1>已完成的巡检</h1>
+
+											<php>
+								function showTree($data,$pre=null) {
+									$i=0;
+									foreach ($data as $key => $val) {
+									     $i++;
+										 
+										echo ' <div class="row1"><div class="cc"><span>'.$i.'</span>';
+										echo '<span class="aa">'.date('YmdHis',$val['time']).'</span>';
+											
+										echo '<span>'.$val['shebeiname'].'</span>';
+										
+										echo '<span>';
+											
+										echo '</span></div>';
+										echo '<div><span>'.$val['user'].'</span>';
+										echo '<span>'.date('Y-m-d H:i:s',$val['time']).'</span></div>';
+										echo '<div style="position:relative"><span style="position:absolute;top:15px">';
+										
+										if($val['ztid']==0){
+											   echo '正常';
+											};
+											if($val['ztid']==1){
+											   echo '<span style="color:red">不正常</span>';
+											};
+										
+										echo '</span><span style="margin-left:20%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?m=Qwadmin&c=Wap&a=viewshebei&id='.$val['id'].'" target="_blank"  class="ui-btn ui-btn-inline ui-mini ui-corner-all bb">查看</a></span></div></div>';
+										
+
+									}
+								}
+								showTree($categorys);
+								</php>	
+
+        </div>
+
+    </div>
+    <a href="index.php?m=Qwadmin&c=wap&a=baogao" style="margin-left: 20px" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ">查看统计报表</a>
+
+    </div>
+<script src="wap/jquery-1.12.4.min.js"></script>
+<script src="wap/jquery.mobile-1.4.5.min.js"></script>
+</body>
+</html>

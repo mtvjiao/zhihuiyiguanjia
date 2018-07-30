@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<form  id="form" name="form"  class="form-horizontal"  method="post"  action="{:U('update')}">
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 巡更计划名</label>
+										<!--<input name="id" value="0" type="hidden">-->
+										<div class="col-sm-9">
+											<input type="text" name="jihuaming" id="jihuaming">
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 所属小组</label>
+										<!--<input name="id" value="0" type="hidden">-->
+										<div class="col-sm-9">
+										<select id="pid" name="pid" class="rcol-xs-10 col-sm-3">
+											<volist name="option" id="v">
+												<option value="{$v.id}">{$v['name']}</option>
+												<volist name="v.children" id="vv">
+												<option value="{$vv.id}">&nbsp;&nbsp;┗━{$vv['name']}</option>
+													<volist name="vv.children" id="vvv">
+													<option value="{$vvv.id}">&nbsp;&nbsp;&nbsp;&nbsp;┗━{$vvv['name']}</option>
+													
+													</volist>
+												</volist>
+											</volist>
+										</select>
+										<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 小组成员</label>
+										<div class="col-sm-9">
+									<select name="select" id="select" multiple size="5" class="rcol-xs-10 col-sm-3" ondblclick="option()">
+									</select> 
+									
+										<span class="help-inline col-xs-12 col-sm-2" style="text-align:center">
+												<a class="btn btn-danger btn-sm jianren" style=" height:25px;line-height:10px;text-align:center;margin-top:-5px" >移除选中</a>
+											</span>
+										<span class="help-inline col-xs-12 col-sm-2" style="text-align:center">
+												<span class="middle ">添加小组成员</span>
+											</span>
+										<span class="help-inline col-xs-12 col-sm-4">
+												<span class="middle"><input type="text" name="jiaren" id="jiaren" class="rcol-xs-10 col-sm-5" value="">&nbsp; &nbsp; &nbsp; <a class="btn btn-danger btn-sm jiaren" style=" height:25px;line-height:10px;text-align:center;margin-top:-5px">添加</a> </span>
+											</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 巡更项目</label>
+										<div class="col-sm-11">
+										<select id="prid" name="prid" class="rcol-xs-10 col-sm-2">
+										{$category}										
+										</select>
+
+										
+
+
+										</div>
+									</div>
+									<div class="space-4"></div>
+									
+									
+<!-- 									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 巡更周期</label>
+										<div class="col-sm-9">
+										<select id="zhouqi" name="zhouqi" class="rcol-xs-10 col-sm-3">
+										{$zhouqi}										
+											 
+										</select>
+										<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div> -->
+
+									<div class="col-md-offset-2 col-md-9">
+										<a class="btn btn-info submitjh">
+											<i class="icon-ok bigger-110"></i>
+											提交
+										</a>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="icon-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</form>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			function option(){
+			   //var uid = $("#select").val();
+				//alert(uid);
+				//console.log(uid);
+				var uid = $("#select").val() ;
+				var pid = $("#pid").val() ;
+				
+				$.ajax({
+				async:false,
+				type:"POST",
+				url:"index.php?m=Qwadmin&c=Xunjian&a=remove",
+				dataType:"json",
+				data:{"uid":uid,"pid":pid},
+				success:function(data){
+				//alert(data);
+				},
+				error:function(data){
+				//alert("Fail"+data);
+				//return false;
+				}
+				});
+				
+				$("#select option:selected").remove();
+			}
+
+		$(function(){
+		
+		
+			getVal(); 
+			
+			
+			$("#pid").change(function(){
+			getVal();
+			
+			});
+
+
+			function getVal(){
+				$.getJSON("index.php?m=Qwadmin&c=Xunjian&a=select",{pid:$("#pid").val()},function(json){
+				var prid = $("#select");
+				$("option",prid).remove(); //清空原有的选项，也可使用 ds_id.empty();
+				$.each(json,function(index,array){
+				var option = "<option value='"+array['uid']+"'>"+array['user']+"</option>";
+				prid.append(option);
+				});
+				});
+			}
+
+
+
+			$(".jianren").click(function(){
+				option();
+			})
+
+
+			
+			$(".jiaren").click(function(){
+				var jiaren = $("#jiaren").val();
+				var pid = $("#pid").val() ;
+				$.ajax({
+				async:false,
+				type:"POST",
+				url:"index.php?m=Qwadmin&c=Xunjian&a=jiaren",
+				dataType:"json",
+				data:{"jiaren":jiaren,"pid":pid},
+				success:function(data){
+				alert(data);
+				},
+				error:function(data){
+				//alert("Fail"+data);
+				//return false;
+				}
+				});
+			})
+
+
+		
+		
+		
+
+		
+			$(".submitjh").click(function(){
+
+				$("#form").submit();
+			})
+		})
+		
+		</script>
+
+	</body>
+</html>

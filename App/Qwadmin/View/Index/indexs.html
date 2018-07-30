@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>控制台-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<include file="Public/head" />
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/jquery.js"></script>
+<script>
+    $(function(){
+        $("#first").on("click",function(){
+            $("#lianjie").attr("src","index.php?m=Qwadmin&c=index&a=demo")
+        });
+        $("#second").on("click",function(){
+
+            $("#lianjie").attr("src","index.php?m=Qwadmin&c=index&a=demo1")
+        })
+        $("#three").on("click",function(){
+
+            $("#lianjie").attr("src","index.php?m=Qwadmin&c=index&a=biaoge")
+        })
+        $("#four").on("click",function(){
+
+            $("#lianjie").attr("src","index.php?m=Qwadmin&c=index&a=biaoge")
+        })
+    })
+</script>
+
+
+	</head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{:U('index/index')}">首页</a>
+							</li>
+
+							<li>
+								<a href="#">控制台</a>
+							</li>
+							<li class="active">日志查看</li>
+						</ul><!-- /.breadcrumb -->
+					</div>
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="row">
+<img src="wap/yuanzhang.png" width="120" id="first">&nbsp;&nbsp;
+<img src="wap/fuyuanzhang.png" width="120" id="second">&nbsp;&nbsp;
+<img src="wap/zhuren.png" width="120" id="three">&nbsp;&nbsp;
+<img src="wap/caozuo.png" width="120" id="four">&nbsp;&nbsp;
+<div style="height:20px;"></div>
+ <iframe id="lianjie"  frameborder=0 width=1100 height=600 marginheight=0 marginwidth=0 scrolling=no src="index.php?m=Qwadmin&c=index&a=demo">
+</iframe>
+
+								</div>		
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		$(function(){
+
+			$("#officialnews ul").html('<div class="ace-icon fa fa-spinner fa-spin orange"></div>');
+			$.ajax({
+				type: 'GET',
+				url: '{$Think.CONFIG.NEWS_URL}?callback=?',
+				success :function(data){
+					$("#officialnews ul").html("");
+					$.each(data.news, function(i,news){
+						$("#officialnews ul").append("<li>"+news.pre+"<a href=\""+news.url+"\" title=\""+news.title+"\" target=\"_blank\">"+news.title+"</a>"+news.time+"</li>");
+					});
+				},
+				error: function(){
+					$("#officialnews ul").html("服务器不可用，请稍后再试！");
+				},
+				dataType: 'json'
+			});
+
+			$("#update").click(function(){
+				
+				$("#upmsg").html("");
+				$("#upmsg").addClass("ace-icon fa fa-refresh fa-spin blue");
+				$.ajax({
+					type: 'GET',
+					url: '{$Think.CONFIG.UPDATE_URL}?v=<?php echo THINK_VERSION ?>&callback=?',
+					success :function(json){
+						if(json.result=='no'){
+							$("#upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
+						}else if(json.result=='yes'){
+							$("#upmsg").html("检查到新版本 "+json.ver+"，请前往“系统设置”->“<a  href=\"{:U('Update/update')}\">在线升级</a>”").removeClass();
+						}
+					},
+					error: function(){
+						$("#upmsg").html("悲剧了，网络故障，请稍后再试！").removeClass();
+					},
+					dataType: 'json'
+				});
+	
+			});
+		})
+		$(function() {
+			$(".btn-info.submit").click(function(){
+				var content = $("#content").val();
+				if(content==''){
+					bootbox.dialog({
+						title: '友情提示：',
+						message: "反馈内容必须填写。", 
+						buttons: {
+							"success" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							}
+						}
+					});
+					return;
+				}
+
+				$("#form").submit();
+			});
+		});
+		
+
+		</script>
+	</body>
+</html>

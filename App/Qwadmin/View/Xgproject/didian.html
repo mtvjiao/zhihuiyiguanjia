@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bK1dZWjVkiSuauVlWVNdpCQq"></script>
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-7">
+								<!-- PAGE CONTENT BEGINS -->
+								<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+									    <th class="col-xs-2">巡更地点</th>										
+									    <th class="col-xs-2">经度</th>										
+									    <th class="col-xs-2">纬度</th>										
+
+										<th class="col-xs-3">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+								<if condition="!empty($category)">
+								<php>
+								function showTree($data,$pre=null) {
+									
+									foreach ($data as $key => $val) {
+										echo '<tr>';
+
+										echo '<td>';
+											echo $val['name'];
+										echo '</td>';
+										echo '<td>';
+											echo $val['jingdu'];										
+										echo '</td>';										
+										echo '<td>';
+											echo $val['weidu'];										
+										echo '</td>';
+
+										echo '<td>';
+										echo '<a class="green"
+										 onclick="seemap('.$val[jingdu].','.$val[weidu].',\''.$val[name].'\');" >查看地图</a><br>';
+										echo '<a class="green" href="'.U('adddidian',array('pid'=>$val['id'])).'" title="新增分类"><i class="ace-icon fa fa-plus-circle bigger-100"></i>新增</a>&nbsp;&nbsp;';
+										echo '<a class="blue" href="'.U('editdidian',array('id'=>$val['id'])).'" title="编辑分类"><i class="ace-icon fa fa-plus-circle bigger-100"></i>编辑</a>&nbsp;&nbsp;';
+										echo '<a class="red del" href="javascript:void(0);" val="'.$val['id'].'" title="删除分类"><i class="ace-icon fa fa-plus-circle bigger-100"></i>删除</a>';
+										echo '</td>';
+										if (!empty($val['children'])) {
+											showTree($val['children'],$pre.'&nbsp;&nbsp;');
+										}
+
+										echo '</tr>';
+									}
+								}
+								showTree($category);
+								</php>
+								<else />
+								<tr>
+									<td colspan="3">无分类</td>
+								</tr>
+								</if>
+								</tbody>
+								</table>
+<style type="text/css">
+	#allmap{height:500px;width:100%;}
+
+</style>
+
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+
+
+		<div class="col-xs-5">
+		<div id="allmap"></div>
+
+		</div><!-- /.modal-content -->
+
+
+
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+				
+
+			
+			function seemap(jingdu,weidu,nn){
+				var name = nn;
+				var map = new BMap.Map("allmap");
+					map.centerAndZoom(new BMap.Point(jingdu,weidu), 20);  // 初始化地图,设置中心点坐标和地图级别
+					map.enableScrollWheelZoom(true);
+					
+
+						map.clearOverlays(); 
+						var new_point = new BMap.Point(jingdu,weidu);
+						var marker = new BMap.Marker(new_point);  // 创建标注
+						//var label = new BMap.Label("我是百度标注哦",{offset:new BMap.Size(0,0)}); 
+                        
+						map.addOverlay(marker);              // 将标注添加到地图中
+						map.panTo(new_point); 
+
+						 
+						var label = new BMap.Label(name,{offset:new BMap.Size(20,-10)});
+						    label.setStyle({  
+						         display:"block"  //给label设置样式，任意的CSS都是可以的
+						    });
+						marker.setLabel(label);
+						 
+
+				}
+
+
+
+
+			
+		</script>
+
+	</body>
+</html>

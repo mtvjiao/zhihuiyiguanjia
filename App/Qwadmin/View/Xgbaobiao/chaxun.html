@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<script src="__PUBLIC__/qwadmin/js/showdate.js"></script>
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="row">
+								<div class="col-xs-2" style="line-height: 35px;">查询历史巡检计划完成情况:</div>
+								<form  class="formtime" action="{:U('chaxun')}" method="post">
+								<div class="col-xs-2"><input type="text" id="st" name="st" onclick="return Calendar('st');" value="" class="form-control" /></div>
+								<div style="width: 2%; float: left; line-height: 35px;">到</div>
+								<div class="col-xs-2"><input type="text" id="et" onclick="return Calendar('et');" value="" name="et" class="form-control" /></div>
+								<div class="col-xs-2"><button type="submit" id="button" class="btn btn-purple btn-sm">
+									<span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+									Search
+								</button></div>
+
+								</form>
+								</div>
+									
+								{$kaishit}到{$jieshut}的巡检计划列表
+								<volist name="jihua" id="val">
+										<h3>{$val['xiaozu']}的巡检计划</h2>已完成{$val['finishnum']},未完成{$val['unfinishnum']}
+											
+									<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th class="col-xs-2">计划名称</th>
+											<th class="col-xs-2">周期</th>
+											<th class="col-xs-2">开始时间</th>
+											<th class="col-xs-2">结束时间</th>
+											<th class="col-xs-2">是否完成</th>
+											<th class="col-xs-2">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+									<volist name="val['datas']" id="vals">
+										<tr>
+											
+											<td>{$vals['jihuaming']}</td>
+											<td>{$vals['zhouqiname']}</td>
+											<td><?php echo date("Y-m-d H:i:s",$vals['starttime']);?></td>
+											<td><?php echo date("Y-m-d H:i:s",$vals['stoptime']);?></td>
+											<td><?php if($vals['success'] == "0"){echo "未完成";} if($vals['success'] == "1"){echo "已完成";}?></td>
+											<td><a class="green" href="index.php?m=Qwadmin&c=Jhbaobiao&a=view&id=<?php echo $vals['id'] ;?>&xiaozu=<?php echo $vals['xiaozu'] ;?>&zhixingid=<?php echo $vals['zhixingid'] ;?>" >
+											查看</a>&nbsp;&nbsp;</td>
+										</tr>
+									</volist>
+									</tbody>
+								</table>
+									</volist>
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			
+
+
+		</script>>
+
+	</body>
+</html>

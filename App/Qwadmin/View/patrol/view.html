@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+																	<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th class="col-xs-3">巡检单号</th>
+										<th class="col-xs-3">巡检设备</th>
+										<th class="col-xs-3">巡检操作时间</th>
+										<th class="col-xs-1">巡检操作人</th>
+										<th class="col-xs-1">状态</th>
+										<th class="col-xs-1">巡检结果</th>
+									</tr>
+								</thead>
+								<tbody>
+								<volist name="categorys" id="val">
+										<tr>
+											<td><a href="index.php?m=Qwadmin&c=Patrol&a=viewshebei&id={$val['id']}">{$val['danhao']}</a></td>
+											<td><span class="yename"><input class="yeinput" type="hidden" value="'.$val['id'].'">{$val['shebeiname']}</span></td>
+											<td><php> echo date('Y-m-d H:i:s',$val['time']) </php></td>
+											<td>{$val['user']}</td>
+											<td>{$val['zhuangtai']}</td>
+											<td><php> 										
+											if($val['zt']==1){
+											if($val['ztid']==0){
+											   echo '正常';
+											}
+											if($val['ztid']==1){
+											   echo '不正常';
+											}
+										
+										}
+ </php></td>
+										</tr>
+								
+								</volist>
+
+						
+								
+								</tbody>
+								</table>
+									{$page}
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+
+/*							$('.yename').click(function(){
+						 
+									var aa =  $(this).children('.yeinput').val();
+
+
+										type: 'GET',
+										url: 'http://127.0.0.1/qwadmin/index.php?m=Qwadmin&c=Patrol&a=views&id='+aa,
+										dataType:'json' ,
+
+										success :function(data){
+											alert(data.length);
+											   for (var i = 0; i < data.length; i++) {
+												  alert(data[i].pname);
+											   }
+
+										},
+										error: function(){
+											alert("失败");
+										},
+										
+									});
+							
+							
+								
+							  });*/
+							   		</script>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+
+
+<div class="row1" style="border-bottom:1px solid grey ;height:600px">
+<div id="container" style="height:600px;width:1200px;float: left; border-right:1px solid grey ; "></div>
+</div>
+
+
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/jquery.js"></script>
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/hchart/highcharts.js"></script> 
+		 <script type="text/javascript" src="__PUBLIC__/qwadmin/js/hchart/highcharts-3d.js"></script>
+<script>
+    $(function () {
+ 
+        $('#container').highcharts({
+            chart: {
+                type: 'column',
+                margin: 75,
+                options3d: {
+                    enabled: true,
+                    alpha: 0,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: '报修-维修单统计柱状图'
+            },
+            subtitle: {
+                text: ''
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+            xAxis: {
+                categories: ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月']
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            series: [{
+                name: '维修单数量',
+                data:  [<?php echo($counts[1])?>, <?php echo($counts[2])?>, <?php echo($counts[3])?>, <?php echo($counts[4])?>, <?php echo($counts[5])?>, <?php echo($counts[6])?>, <?php echo($counts[7])?>, <?php echo($counts[8])?>, <?php echo($counts[9])?>, <?php echo($counts[10])?>,<?php echo($counts[11])?>,<?php echo($counts[12])?>]
+				
+            },
+			{
+                name: '报修单数量',
+                data:  [<?php echo($count[1])?>, <?php echo($count[2])?>, <?php echo($count[3])?>, <?php echo($count[4])?>, <?php echo($count[5])?>, <?php echo($count[6])?>, <?php echo($count[7])?>, <?php echo($count[8])?>, <?php echo($count[9])?>, <?php echo($count[10])?>,<?php echo($count[11])?>,<?php echo($count[12])?>]
+				
+            }
+			]
+        });
+       
+    });
+
+</script>

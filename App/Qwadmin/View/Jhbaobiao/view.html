@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>{$current['title']}-{$Think.CONFIG.title}</title>
+    <meta name="keywords" content="{$Think.CONFIG.keywords}" />
+    <meta name="description" content="{$Think.CONFIG.description}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <script src="__PUBLIC__/qwadmin/js/word/jquery-1.12.4.min.js"></script>
+    <script src="__PUBLIC__/qwadmin/js/word/save.js"></script>
+    <script src="__PUBLIC__/qwadmin/js/word/jquery.wordexport.js"></script>
+    <include file="Public/head" />
+    <script>
+    // ejb
+    jQuery(document).ready(function($) {
+        $("#jmeterbottom").click(function(event) {
+            $("#jmeter").wordExport();
+        });
+        $("#ejbbottom").click(function(event) {
+            $("#ejb").wordExport();
+        });
+    });
+    </script>
+</head>
+
+<body class="no-skin">
+    <include file="Public/header" />
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {}
+        </script>
+        <include file="Public/sidebar" />
+        <div class="main-content">
+            <div class="main-content-inner">
+                <!-- #section:basics/content.breadcrumbs -->
+                <include file="Public/breadcrumbs" />
+                <!-- /section:basics/content.breadcrumbs -->
+                <div class="page-content">
+                    <include file="Public/set" />
+                    <!-- /section:settings.box -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input type="button" id="jmeterbottom" value="导出已巡检-正常记录到WORD">
+                            <input type="button" id="ejbbottom" value="导出已巡检-不正常记录到WORD">
+                            <div style="height: 10px"></div>
+                            <!-- PAGE CONTENT BEGINS -->
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#home" data-toggle="tab">
+										    未巡检
+										</a>
+                                </li>
+                                <li>
+                                    <a href="#jmeter" data-toggle="tab">已巡检-正常
+										</a>
+                                </li>
+                                <li>
+                                    <a href="#ejb" data-toggle="tab">已巡检-不正常
+										</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade in active" id="home">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-6">设备名称</th>
+                                                <!-- <th class="col-xs-2">完成时间</th>
+												<th class="col-xs-2">巡检人</th> 
+
+												<th class="col-xs-2">操作</th>-->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <volist name="shebeiunfinish" id="val">
+                                                <tr>
+                                                    <td>{$val['shebeiname']}</td>
+                                                    <!-- <td>{$vals['zhouqiname']}</td>
+											<td><?php if($vals['zt'] == "0"){echo "未启动";}else{echo "已启动";}?></td>
+											<td><?php if($vals['success'] == "0"){echo "未完成";} if($vals['success'] == "1"){echo "已完成";}?></td> 
+											<td><a class="green" href="index.php?=Qwadmin&c=Jhbaobiao&a=view&id=<?php echo $vals['id'] ;?>" >
+																     	
+											查看</a>&nbsp;&nbsp;</td>-->
+                                                </tr>
+                                            </volist>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="jmeter">
+                                    巡检正常
+                                    <table id="jmeters" class="table table-striped table-bordered" border="1">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-3">设备名称</th>
+                                                <th class="col-xs-3">设备位置</th>
+                                                <th class="col-xs-2">完成时间</th>
+                                                <th class="col-xs-2">巡检人</th>
+                                                <th class="col-xs-2">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <volist name="shebeifinish" id="val">
+                                                <tr>
+                                                    <td>{$val['shebeiname']}</td>
+                                                    <td>{$val['area']}</td>
+                                                    <td>
+                                                        <?php echo date("Y-m-d h:i:s",$val['time']);?>
+                                                    </td>
+                                                    <td>{$val['zhixinguser']}</td>
+                                                    <td><a class="green" href="index.php?=Qwadmin&c=Jhbaobiao&a=viewshebei&id=<?php echo $val['sid'] ;?>&xiaozu={$xiaozu}">
+																     	
+											查看</a>&nbsp;&nbsp;</td>
+                                                </tr>
+                                            </volist>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="ejb">
+                                    巡检不正常
+                                    <table id="ejbs" class="table table-striped table-bordered" border="1">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-3">设备名称</th>
+                                                <th class="col-xs-3">设备位置</th>
+                                                <th class="col-xs-2">完成时间</th>
+                                                <th class="col-xs-2">巡检人</th>
+                                                <th class="col-xs-2">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <volist name="shebeifinishu" id="val">
+                                                <tr>
+                                                    <td>{$val['shebeiname']}</td>
+                                                    <td>{$val['area']}</td>
+                                                    <td>
+                                                        <?php echo date("Y-m-d h:i:s",$val['time']);?>
+                                                    </td>
+                                                    <td>{$val['zhixinguser']}</td>
+                                                    <td><a class="green" href="index.php?=Qwadmin&c=Jhbaobiao&a=viewshebei&id=<?php echo $val['sid'] ;?>&xiaozu={$xiaozu}">
+																     	
+											查看</a>&nbsp;&nbsp;</td>
+                                                </tr>
+                                            </volist>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- PAGE CONTENT ENDS -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.page-content -->
+            </div>
+        </div>
+        <!-- /.main-content -->
+        <include file="Public/footer" />
+    </div>
+    <!-- /.main-container -->
+    <include file="Public/footerjs" />
+    <!-- inline scripts related to this page -->
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>巡检报告11</title>
+    <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+    <style>
+
+        #head h1{color:#f0f0f0}
+
+        .row1 span{margin-left:10px;}
+        .row1 div{margin: 5px;}
+        .aa{font-weight: bold;font-size:18px}
+
+        .ui-content {margin-top: 50px}
+        #head1{height:50px;background: #57aea8;border:none;position:fixed;width:100%;z-index:1}
+        #head1 h1{color:#f0f0f0}
+
+
+        .row11 span{margin: 10px}
+    .botm div{margin-bottom: 10px}
+        #lianjie{background-color:#3f8468;color: #f0f0f0;border:none;}
+
+    </style>
+</head>
+<body>
+<div data-role="page" id="page2">
+    <div data-role="header" id="head1">
+
+        <h1 style="font-size: 20px;text-shadow:none;color:#ffffff">巡检记录详情</h1>
+    </div>
+    
+    <div data-role="main" class="ui-content">
+     <div class="top" style="background-color: #ffffff">
+        <div class="row11">
+        
+        
+            <div style="font-size: 20px;font-weight: bold;color:#57aea8;margin-bottom: 20px ">{$cate['shebeiname']}</div>
+            <div style="color: #999999">{$cate['user']}</div>
+        </div>
+
+        <div class="ui-field-contain first">
+       
+        <php>
+           function showTree($data,$pre=null) {
+									
+									foreach ($data as $key => $val) {
+										echo '<div class="ui-field-contain" style="border:1px dotted grey">';
+										echo '<span>'.$val['shuxingname'];
+										echo '-';
+											if ($val['zhengchang']==1) {
+												echo '不正常';
+											}elseif ($val['zhengchang']==2) {
+												echo '正常';
+											}else {
+												echo '正常';
+											}
+										echo '</span>';
+											if ($val['zhengchang']==1) {
+                 <div>
+											   if($val['img0']){
+            
+               echo '<a href="#myPopup0" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=".$val['img0']." style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup0" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src="'.$val['img0'].'">
+                </div>';}
+                if($val['img1']){
+                echo'<a href="#myPopup1" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=".$val['img1']." style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup1" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src="'.$val['img1'].'">
+                </div>';}
+                if($val['img2']){
+               echo' <a href="#myPopup2" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src=".$val['img2']." style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopup2" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <img src="'.$val['img2'].'">
+                </div>';}
+                
+            </div>
+            }elseif ($val['zhengchang']==0) {
+												echo '';
+											}
+											if ($val['zhengchang']==1) {
+												if($val['sound0']){
+            <div>
+               echo' <a href="#myPopu0" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/3.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu0" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls >
+
+                        <source src="'.$val['sound0'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>';}
+               if($val['sound1']){
+               echo' <a href="#myPopu1" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/3.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu1" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls>
+
+                        <source src="'.$val['sound1'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>';}
+                 if($val['sound1']){
+               echo' <a href="#myPopu2" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all"><img src="wap/3.png" style="width:50px;height:50px;"></a>
+
+                <div data-role="popup" id="myPopu4" class="ui-content">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">关闭</a>
+                    <audio controls >
+
+                        <source src="'.$val['sound2'].'" type="audio/mpeg">
+
+                        您的浏览器不支持收听音频功能
+                    </audio>
+
+                </div>';}
+</div>
+            }elseif ($val['zhengchang']==0) {
+												echo '';
+											}
+
+										echo '</div>';
+									}
+								}
+								showTree($category);
+								</php>		
+
+        
+
+</div>
+<div class="botm" style="background-color: #ffffff;margin-top: 20px">
+    <div class="row11">
+        <div style="font-size: 20px;font-weight: bold;color:#57aea8;margin-bottom: 20px ">消防箱上的巡检属性</div>
+        <div style="color: #999999">①外观：整洁，卫生，不锈蚀，边框正常;消防栓操作标识正常</div>
+        <div style="color:#999999">②消防栓无锈蚀正常，功能正常，消防栓上的卡箍正常，水压正常</div>
+        <div style="color: #999999">③水带规整无破损</div>
+        <div style="color:#999999">④消防软管无破损无锈蚀，功能正常</div>
+        <div style="color: #999999">⑤枪头完好，位置放置正确</div>
+        <div style="color:#999999">⑥消防箱锁具功能正常</div>
+    </div>
+</div>
+
+
+
+
+
+
+    </div>
+</div>
+<script src="jquery-1.12.4.min.js"></script>
+<script src="jquery.mobile-1.4.5.min.js"></script>
+</body>
+</html>

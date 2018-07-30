@@ -1,0 +1,414 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"user",
+				"userinfo"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"us",
+				"userinfo"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/D/WWW/shuipfcms/shuipf/Template/Default/Content/List/list.php",
+			"settings":
+			{
+				"buffer_size": 8538,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/WWW/shui1011/shuipf/Common/Conf/config.php",
+			"settings":
+			{
+				"buffer_size": 7672,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/WWW/shui1011/shuipf/Common/Conf/core.php",
+			"settings":
+			{
+				"buffer_size": 2578,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/WWW/shui1011/shuipf/Common/Conf/dataconfig.php",
+			"settings":
+			{
+				"buffer_size": 495,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install Package",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Install Package Control"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/WWW/qwadmin825/App",
+		"/D/WWW/qwadmin825/App/Appi",
+		"/D/WWW/qwadmin825/App/Appi/Controller",
+		"/D/WWW/qwadmin825/App/Qwadmin",
+		"/D/WWW/qwadmin825/App/Qwadmin/Controller",
+		"/D/WWW/qwadmin825/App/Qwadmin/View",
+		"/D/WWW/qwadmin825/App/Qwadmin/View/wap"
+	],
+	"file_history":
+	[
+		"/D/WWW/shui1011/shuipf/Template/Default/Content/List/list.php",
+		"/D/WWW/shui1011/#runtime/common~runtime.php",
+		"/D/WWW/qwadmin825/App/Qwadmin/View/wap/viewshebei.html",
+		"/D/WWW/qwadmin825/App/Appi/Controller/ShebeiController.class.php",
+		"/D/WWW/qwadmin825/App/Appi/Controller/JihuaController.class.php",
+		"/D/WWW/qwadmin825/App/Qwadmin/Controller/ComController.class.php",
+		"/C/Users/jiaojun/Desktop/layer-v2.4/layer-v2.4/demo.html",
+		"/C/Users/jiaojun/Desktop/layer-v2.4/layer-v2.4/layer/layer.js",
+		"/C/Users/jiaojun/Documents/footer.html",
+		"/C/Users/jiaojun/Documents/footer_common.html",
+		"/C/Users/jiaojun/Documents/other.php",
+		"/C/Users/jiaojun/Desktop/1.html",
+		"/D/WWW/qwadmin825/App/Qwadmin/Controller/IndexController.class.php",
+		"/D/WWW/qwadmin825/App/Qwadmin/Controller/LoginController.class.php",
+		"/D/WWW/qwadmin825/App/Appi/Controller/AutoxjController.class.php",
+		"/D/WWW/qwadmin825/App/Appi/Controller/LoginController.class.php",
+		"/D/WWW/qwadmin825/App/Appi/Controller/XunjianjihuaController.class.php",
+		"/D/WWW/qwadmin825/upfile/1471762087858-699500774.jpg",
+		"/D/WWW/qwadmin825/App/Qwadmin/View/wap/xunjian1/.idea/workspace.xml",
+		"/D/WWW/qwadmin825/index.php",
+		"/D/WWW/qwadmin825/App/Appi/Controller/ErweiController.class.php",
+		"/D/WWW/qwadmin825/App/Appi/Controller/ComController.class.php",
+		"/D/WWW/qwadmin825/ThinkPHP/Library/Think/Model.class.php",
+		"/C/Users/jiaojun/Documents/index.html",
+		"/D/WWW/qwadmin825/App/Qwadmin/Controller/XunjianController.class.php",
+		"/D/WWW/qwadmin825/App/Qwadmin/Controller/WapController.class.php",
+		"/D/WWW/laravel-5/.env.example",
+		"/C/Users/jiaojun/Documents/products_nr.html",
+		"/D/WWW/laravel-5/bootstrap/autoload.php",
+		"/C/Users/jiaojun/Documents/global.css",
+		"/C/Users/jiaojun/Documents/main.css",
+		"/C/Users/jiaojun/Documents/about_us_fl.html",
+		"/C/Users/jiaojun/Documents/factory_fl.html",
+		"/C/Users/jiaojun/Documents/优酷影视库/about_us_fl.html",
+		"/D/WWW/qwadmin825/Public/qwadmin/css/ace.css",
+		"/D/WWW/qwadmin825/App/Appi/Controller/XunjianjihuaController1.class.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"D:\\WWW\\qwadmin825"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"127",
+			"css",
+			"Memcached",
+			"textarea",
+			"6",
+			"jilu",
+			"qw_projectjl",
+			" \n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "D:\\WWW\\qwadmin825"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/D/WWW/shuipfcms/shuipf/Template/Default/Content/List/list.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8538,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4753,
+								4755
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1406.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/D/WWW/shui1011/shuipf/Common/Conf/config.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7672,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2052.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/D/WWW/shui1011/shuipf/Common/Conf/core.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2578,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 684.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/D/WWW/shui1011/shuipf/Common/Conf/dataconfig.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 495,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								138,
+								138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"index.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 157.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
